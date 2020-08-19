@@ -1,4 +1,3 @@
-/*Matricola = 876335, Nome Gruppo = P1G66*/
 #include <stdio.h>
 #include <stdlib.h>
 #include "checkregisters.h"
