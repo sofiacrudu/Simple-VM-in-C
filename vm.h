@@ -1,4 +1,3 @@
-/*Matricola = 876335, Nome Gruppo = P1G66*/
 #define STACK_SIZE 16384/*Dichiaro la dimensione dello stack, che in tale caso è di 64KB.*/
 #define NUM_REGS 32/*Dichiaro il numero dei registri.*/
 
