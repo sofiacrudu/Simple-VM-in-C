@@ -1,1 +1,1 @@
-# Simple-VM-in-C
+# VM
