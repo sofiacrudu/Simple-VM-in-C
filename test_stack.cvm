@@ -1,0 +1,31 @@
+; test.cvm SOFIA CRUDU
+; Test per PRINT_STACK: si pushano 5 numeri e si fa la rispettiva stampa dei valori contenuti nello stack
+28 ;
+12 ; MOV R6 5 [0]
+6 ;
+5 ;
+12 ; MOV R7 12 [3]
+7 ;
+-12 ;
+12 ; MOV R8 23 [6]
+8 ;
+23 ;
+12 ; MOV R9 54 [9]
+9 ;
+54 ;
+12 ; MOV R10 109 [12]
+10 ;
+109 ;
+10 ; PUSH R6 [15]
+6 ;
+10 ; PUSH R7 [17]
+7 ;
+10 ; PUSH R8 [19]
+8 ;
+10 ; PUSH R9 [21]
+9 ;
+10 ; PUSH R10 [23]
+10 ;
+2 ; PRINT_STACK [25]
+5 ;
+0 ; HALT [27]

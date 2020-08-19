@@ -1,0 +1,57 @@
+; SommaNumeri.cmv SOFIA CRUDU
+; La funzione calcola la somma dei primi numeri a partire da 1 a N, in questo caso per i numeri: 10, 35 e 60
+; Sostituire 1 (riga32) con 0 e modificare JPOS (riga43) con JZ per sommare i numeri da 0 a N-1
+49 ; numero linee
+; main:
+12 ; MOV R2 10 [0]
+2 ;
+10 ;
+20 ; CALL somma_numeri [3]
+22 ;
+1 ; DISPLAY R30 [5]
+30 ;
+12 ; MOV R2 35 [7]
+2 ;
+35 ;
+20 ; CALL -> somma_numeri [10]
+22 ;
+1 ; DISPLAY R30 [12]
+30 ;
+12 ; MOV R2 60 [14]
+2  ;
+60 ;
+20 ; CALL -> somma_numeri [17]
+22 ;
+1 ; DISPLAY R30 [19]
+30 ;
+0 ; HALT [21]
+; somma_numeri:
+12 ; MOV R0 1 -> i=1 [22]
+0 ;
+1 ;
+12 ; MOV R1 1 -> costante 1 per fare i++ [25]
+1 ;
+1 ;
+12 ; MOV R30 0 -> accumulatore per fare la somma [28]
+30 ;
+0 ;
+; inizio_for
+31 ; SUB R0 R2 -> i-n [31]
+0 ;
+2 ;
+24 ; JPOS -> if i-n > 0 goto fine_for [34]
+48 ;
+30 ; ADD R30 R0 -> sum+i [36]
+30 ;
+0 ;
+11 ; POP R30 -> sum=sum+i [39]
+30 ;
+30 ; ADD R0 R1 -> i++ [41]
+0 ;
+1 ;
+11 ; POP R0 -> i=i+1 [44]
+0 ;
+22 ; JMP -> goto inizio_for [46]
+31 ;
+; fine_for
+21 ; RET -> torno a main [48]

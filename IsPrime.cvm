@@ -1,0 +1,116 @@
+; IsPrime.cvm SOFIA CRUDU
+; Test di primalità per i numeri: 0, 1, 2, 19, 24, 55
+; La funzione deve restituire 1 se n è primo, 0 altrimenti.
+107 ; numero linee
+; main:
+12 ; MOV R0 0 [0] test per -> 0
+0 ;
+0 ;
+20 ; CALL is_prime [3]
+43 ;
+1 ; DISPLAY R30 [5]
+30 ;
+12 ; MOV R0 1 [7] -> test per 1
+0 ;
+1 ;
+20 ; CALL is_prime [10]
+43 ;
+1 ; DISPLAY R30 [12]
+30 ;
+12 ; MOV R0 2 [14] -> test per 2
+0 ;
+2 ;
+20 ; CALL is_prime [17]
+43 ;
+1 ; DISPLAY R30 [19]
+30 ;
+12 ; MOV R0 19 [21] -> test per 19
+0 ;
+19 ;
+20 ; CALL is_prime [24]
+43 ;
+1 ; DISPLAY R30 [26]
+30 ;
+12 ; MOV R0 24 [28] -> test per 24
+0 ;
+24 ;
+20 ; CALL is_prime [31]
+43 ;
+1 ; DISPLAY R30 [33]
+30 ;
+12 ; MOV R0 55 [35] -> test per 55
+0 ;
+55 ;
+20 ; CALL is_prime [38]
+43 ;
+1 ; DISPLAY R30 [40]
+30 ;
+0 ; HALT [42]
+; is_prime:
+12 ; MOV R1 2 -> d = 2 [43]
+1 ;
+2 ;
+12 ; MOV R20 1 -> costante 1 [46]
+20 ;
+1 ;
+12 ; MOV R30 0 [49]
+30 ;
+0 ;
+; inizio primo if -> if (n > 1)
+31 ; SUB R0 R20 [52]
+0 ;
+20 ;
+25 ; JPOS if n-1 < 0 goto fine_ if [55]
+106 ;
+31 ; SUB R0 R20 [57]
+0 ;
+20 ;
+23 ; JZ if n-1 == 0 goto fine_ if [60]
+106 ;
+12 ; MOV R30 1 [62] -> gestione caso R0 == 2 -> 2 è un numero primo, quindi restituisce 1
+30 ;
+1 ;
+31 ; SUB R0 R1 -> n-d [65]
+0 ;
+1 ;
+23 ; JZ if n-d == 0 goto fine_while [68]
+106 ;
+12 ; MOV R30 0 -> reinizializzo R30 (risultato) a 0 [70]
+30 ;
+0 ;
+; inizio_while:
+31 ; SUB R0 R1 [73]
+0 ;
+1 ;
+23 ; JZ if n-d == 0 goto fine_while [76]
+106 ;
+33 ; DIV R0 R1 [78] -> inizio calcolo del modulo: R25=R0/R1, R26=R25*R1, R0-R26=modulo
+0 ;
+1 ;
+11 ; POP R25 -> = i = n/d [81]
+25 ;
+32 ; MUL R25 R1 [83]
+25 ;
+1  ;
+11 ; POP R26 -> = x = i*d [86]
+26 ;
+31 ; SUB R0 R26 -> n-x [88]
+0 ;
+26 ;
+12 ; MOV R30 0 -> se JZ è vera la funzione deve restituire 0 [91]
+30 ;
+0 ;
+23 ; JZ if n-x == 0 (n non è primo) goto fine_while [94]
+106 ;
+12 ; MOV R30 1 [96] se JZ non si verifica pongo R30 a 1 e vado avanti a testare altri valori all'interno del ciclo while (d<n)
+30 ;
+1 ;
+30 ; ADD R1 R20 -> d++ [99]
+1 ;
+20 ;
+11 ; POP R1 [102]
+1 ;
+22 ; JMP -> goto inizio_while [104]
+73 ;
+; fine_while
+21 ; RET -> torno a main [106]

@@ -1,0 +1,79 @@
+; mcd.cvm SOFIA CRUDU
+; La funzione calcola l'mcd per tre coppie di numeri: (18, 48) = 6, (15, 52) = 1, (16, 100) = 4
+73 ;
+12 ; MOV R4 18 [0]
+4 ;
+18 ;
+12 ; MOV R5 48 [3]
+5 ;
+48 ;
+20 ; CALL mcd [6]
+31 ;
+1 ; DISPLAY R30 [8]
+30 ;
+12 ; MOV R4 15 [10]
+4 ;
+15 ;
+12 ; MOV R5 52 [13]
+5 ;
+52 ;
+20 ; CALL mcd [16]
+31 ;
+1 ; DISPLAY R30 [18]
+30 ;
+12 ; MOV R4 16 [20]
+4 ;
+16 ;
+12 ; MOV R5 100 [23]
+5 ;
+100 ;
+20 ; CALL mcd [26]
+31 ;
+1 ; DISPLAY R30 [28]
+30 ;
+0 ; HALT [30]
+; mcd:
+12 ; MOV R30 1 [31] if (a<0 || b<0) return 1;
+30
+1
+30 ; ADD R4 R30 [34]
+4
+30
+25 ; JNEG if a<0 goto fine [37]
+72 ;
+30 ; ADD R5 R30 [39]
+5 ;
+30 ;
+25 ; JNEG if b<0 goto fine [42]
+72 ;
+10 ; PUSH R4 [44] -> serve per spostare R4 (il primo parametro) in R30 (valore di ritorno)
+4 ;
+11 ; POP R30 -> R30 = R4 [46]
+30 ;
+; inizio_while
+31 ; SUB R30 R5 -> a-b == 0 [48]
+30 ;
+5 ;
+23 ; JZ if R30-R5 == 0 goto fine_while [51]
+72 ;
+31 ; SUB R30 R5 [53]
+30 ;
+5 ;
+25 ;JNEG if a-b<0 goto b=b-a [56]
+65 ;
+31 ; SUB R30 R5 -> a-b>0 [58]
+30 ;
+5 ;
+11 ; POP R30 -> a=a-b [61]
+30 ;
+22 ; JMP [63]
+48 ;
+31 ; SUB R5 R30 b-a [65]
+5 ;
+30 ;
+11 ; POP R5 -> b=b-a [68]
+5 ;
+22 ; JMP -> goto inizio_while [70]
+48 ;
+; fine_while
+21 ; RET -> torno a main [72]
